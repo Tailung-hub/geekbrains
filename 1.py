@@ -1,16 +1,20 @@
-# 1. Реализовать скрипт, в котором должна быть предусмотрена функция расчета заработной платы сотрудника. В расчете
-# необходимо использовать формулу: (выработка в часах * ставка в час) + премия. Для выполнения расчета для конкретных
-# значений необходимо запускать скрипт с параметрами.
+# 1. Создать программно файл в текстовом формате, записать в него построчно данные, вводимые пользователем. Об
+# окончании ввода данных свидетельствует пустая строка.
 
-from sys import argv
-script_name, first_param, second_param, third_param = argv
+# 2. Создать текстовый файл (не программно), сохранить в нем несколько строк,
+# выполнить подсчет количества строк, количества слов в каждой строке.
 
-print("Имя скрипта: ", script_name)
-print("Выработка в часах: ", first_param)
-print("Ставка в час: ", second_param)
-print("Премия: ", third_param)
+while True:
+    with open("text.txt", "a", encoding='utf-8') as text:
+        user_input = input("Введите строку. Для окончания нажмите Enter: ")
+        if user_input == "":
+            break
+        print(user_input, file=text)
+        print("Вы ввели: ", user_input)
 
-try:
-    print("Зарплата: ", (int(first_param) * int(second_param)) + int(third_param))
-except ValueError:
-    print("Неверно введено одно из значений")
+with open("text.txt", "r", encoding='utf-8') as text:
+    strings = text.readlines()
+    print("Всего строк: ", len(strings))
+    print("Всего слов в каждой строке (построчно):")
+    for x, el in enumerate(strings, 1):
+        print(x, len(el.split()))
