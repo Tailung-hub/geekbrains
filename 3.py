@@ -1,16 +1,30 @@
-# 3. Создать текстовый файл (не программно), построчно записать фамилии сотрудников и величину их окладов.
-# Определить, кто из сотрудников имеет оклад менее 20 тыс.,
-# вывести фамилии этих сотрудников.
-# Выполнить подсчет средней величины дохода сотрудников.
+"""3. Реализовать базовый класс Worker (работник), в котором определить атрибуты: name, surname, position (должность),
+income (доход). Последний атрибут должен быть защищенным и ссылаться на словарь, содержащий элементы: оклад и премия,
+например, {"wage": wage, "bonus": bonus}.
+Создать класс Position (должность) на базе класса Worker.
+В классе Position  реализовать методы получения полного имени сотрудника (get_full_name)
+и дохода с учетом премии (get_total_income).
+Проверить работу примера на реальных данных (создать экземпляры класса Position,
+передать данные, проверить значения атрибутов, вызвать методы экземпляров).
+"""
 
-with open("text_3.txt", "r", encoding='utf-8') as workers:
-    worker = workers.readlines()
-    name_dict = {}
-    for el in worker:
-        el = el.split()
-        el[1] = float(el[1])
-        name_dict.update({el[1]: el[0]})
-    for el in name_dict.keys():
-        if el < 20000.0:
-            print(name_dict.get(el))
-    print("Средняя величина дохода: ", round(sum(name_dict.keys()) / len(name_dict), 2))
+
+class Worker:
+    def __init__(self):
+        name = "Петр"
+        surname = "Куликов"
+        position = "Старший инженер"
+        _income = {"Оклад": 30000, "Премия": 10000}
+
+
+class Position(Worker):
+    def get_full_name(self):
+        print("Полное имя: ", Worker.name, Worker.surname)
+
+    def get_total_income(self):
+        print("Полный доход: ", Worker._income.get("Оклад") + Worker._income.get("Премия"))
+
+
+p = Position()
+p.get_full_name()
+p.get_total_income()

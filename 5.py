@@ -1,18 +1,41 @@
-# 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
-# Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
+# 5. Реализовать класс Stationery (канцелярская принадлежность). Определить в нем атрибут title (название) и метод draw
+# (отрисовка). Метод выводит сообщение “Запуск отрисовки.” Создать три дочерних класса Pen (ручка), Pencil (карандаш),
+# Handle (маркер). В каждом из классов реализовать переопределение метода draw. Для каждого из классов методы должен
+# выводить уникальное сообщение. Создать экземпляры классов и проверить, что выведет описанный метод для каждого
+# экземпляра.
 
-from random import randint
 
-with open("num_list.txt", "w", encoding="utf_8") as f:
-    x = 0
-    while x != 10:
-        f.write(str(randint(0, 100)) + " ")
-        x += 1
-with open("num_list.txt", "r") as z:
-    nums = z.read().split()
-    print("Список чисел: ", nums)
-    sum_nums = 0
-    for i in nums:
-        i = int(i)
-        sum_nums += i
-    print("Сумма =", sum_nums)
+class Stationery:
+    def __init__(self):
+        self.title = 'Нижегородская канцелярия'
+
+    def draw(self):
+        print(f'Запуск отрисовки изделий фирмы: {self.title}')
+
+
+class Pen(Stationery):
+    def draw(self):
+        print(f'Выбрана ручка {self.title}')
+
+
+class Pencil(Stationery):
+    def draw(self):
+        print(f'Выбран карандаш {self.title}')
+
+
+class Handle(Stationery):
+    def draw(self):
+        print(f'Выбран маркер {self.title}')
+
+
+a = Stationery()
+a.draw()
+
+p = Pen()
+p.draw()
+
+c = Pencil()
+c.draw()
+
+h = Handle()
+h.draw()
